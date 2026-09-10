@@ -1,21 +1,35 @@
-export default function App() {
-  return (
-    <div className="max-w-2xl mx-auto p-4 flex flex-col gap-4">
-      <Header />
-    </div>
-  );
+import './App.css'
+import { useState } from 'react';
+
+function Greeting(prop){
+  return <h2>Hello World {prop.name} you are {prop.age} years old</h2>
 }
 
-function Header() {
+function App() {
+  const [showGreeting, setShowGreeting] = useState(false);
+
+
+  const name = getName();
+  const age = 22; 
+
+  function greet(){
+    if(showGreeting){    
+      setShowGreeting(false);
+    } else {
+      setShowGreeting(true);
+    }
+  }
+
   return (
-    <header className="flex- items-center justify-between ">
-     <div className="flex flex-col gap-1">
-      <h1 className="text-3xl font-bold">Habit Tracker</h1>
-      <span className="text-zinc-400 text-sm">1/1 done today</span>
-     </div>
-     <div className="flex flex-col gap-1">
-      <span className="text-zinc-400 text-sm"> Sept 8 to Oct 8</span>
-     </div>
-    </header>
-  );
+   <div>
+    <button onClick={greet}>clickme</button>
+    {showGreeting && <Greeting name={name} age={age}/>}
+   </div>
+  )
 }
+
+function getName(){
+  return "Shreya";
+}
+
+export default App;
